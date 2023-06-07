@@ -2,7 +2,7 @@ import requests
 import re
 
 def check_phpinfo():
-    url = 'http://127.0.0.1'  # Update the URL as per your local setup
+    url = input("Enter the URL of the PHP info page: ")
 
     # Send a request to the PHP info page
     response = requests.get(url)
