@@ -1,17 +1,20 @@
 import requests
 import re
 
-def check_phpinfo(url):
+def check_phpinfo():
+    url = 'http://127.0.0.1'  # Update the URL as per your local setup
+
     # Send a request to the PHP info page
     response = requests.get(url)
     phpinfo = response.text
 
-    # Find the disable_functions section in PHP info
-    disable_functions_match = re.search(r'<td class="e">disable_functions</td><td class="v">(.*?)</td>', phpinfo)
+    # Find the disable_functions line in PHP info
+    disable_functions_match = re.search(r'<td class="e">disable_functions<\/td><td class="v">(.*?)<\/td>', phpinfo, re.DOTALL)
     
     if disable_functions_match:
-        disable_functions = disable_functions_match.group(1)
-        disabled_functions = disable_functions.split(',')
+        disable_functions_value = disable_functions_match.group(1)
+        disable_functions_value = disable_functions_value.replace('&nbsp;', '')
+        disabled_functions = disable_functions_value.split(',')
 
         # Functions to check if they are disabled
         vulnerable_functions = [
@@ -44,14 +47,14 @@ def check_phpinfo(url):
             if choice in range(1, len(unblocked_functions) + 1):
                 selected_function = unblocked_functions[choice - 1]
                 file_mapping = {
-                    'system': 'systemFunction.php',
+                    'system': 'execFunction.php',
                     'exec': 'execFunction.php',
                     'passthru': 'passthruFunction.php',
                     'shell_exec': 'shell_execFunction.php',
                     'popen': 'popenFunction.php',
                     'proc_open': 'ProcOpenFunction.php',
-                    'eval': ' **Disabled by default but you welcome to try** evalFunction.php',
-                    'system_shell': '**Disabled by default but you welcome to try** system_shellFunction.php',
+                    'eval': 'evalFunction.php',
+                    'system_shell': 'system_shellFunction.php',
                     'proc_close': 'ProcCloseFunction.php'
                 }
                 file_name = file_mapping.get(selected_function, 'defaultFunction.php')
@@ -63,7 +66,4 @@ def check_phpinfo(url):
     else:
         print("Could not find disable_functions in PHP info.")
 
-# Prompt for the PHP info URL
-phpinfo_url = input("Enter the URL of the PHP info page: ")
-check_phpinfo(phpinfo_url)
-
+check_phpinfo()
