@@ -23,7 +23,3 @@ Note: This script assumes you have access to the PHP info page, which should dis
 ## Contributing
 
 Contributions are welcome! If you find any issues or want to improve the code, feel free to submit a pull request.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
