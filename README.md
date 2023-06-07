@@ -19,9 +19,6 @@ This Python script allows you to check the disabled functions configuration in a
 8. The script will suggest the PHP file to use for the selected function.
 
 Note: This script assumes you have access to the PHP info page, which should display the disable_functions configuration. In case you don't have direct access to the PHP info page, an alternative approach is to upload a PHP file that contains the phpinfo() function and then access that file through a web browser. This will provide the necessary information for the script to analyze and determine the disabled functions. 
-""<?php
-phpinfo()
-?>""
 
 ## Contributing
 
