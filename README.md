@@ -2,6 +2,8 @@
 
 This Python script allows you to check the disabled functions configuration in a PHP server by analyzing the PHP info page.
 ![image](https://github.com/d4rkiZ/CheckDisableFunc.py/assets/97190263/7ee311d5-93f9-4f67-a297-5cae5d10b617)
+![image](https://github.com/d4rkiZ/CheckDisableFunc.py/assets/97190263/5ceabb1c-ed50-401f-831a-207bc96f1cb2)
+
 
 ## Prerequisites
 
